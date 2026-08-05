@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlgoVerse Pro</title>
+    <meta name="description" content="A polished DSA learning workspace with live simulations, guided theory, and premium visuals." />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#app-shell">Skip to content</a>
+    <div class="particles-layer" id="particles-layer" aria-hidden="true"></div>
+
+    <div class="loading-screen" id="loading-screen" role="status" aria-live="polite" aria-busy="true">
+      <div class="loading-shell">
+        <div class="loading-brand">
+          <span class="loading-mark">A</span>
+          <div>
+            <p class="eyebrow">AlgoVerse Pro</p>
+            <h2>Preparing your study workspace</h2>
+          </div>
+        </div>
+        <div class="loading-skeletons" aria-hidden="true">
+          <div class="skeleton-card skeleton-line"></div>
+          <div class="skeleton-card skeleton-grid"></div>
+          <div class="skeleton-card skeleton-line short"></div>
+        </div>
+        <div class="loading-bar" aria-hidden="true">
+          <span class="loading-progress"></span>
+        </div>
+      </div>
+    </div>
+
+    <section class="auth-shell" id="auth-shell">
+      <div class="auth-card">
+        <div class="auth-card-glow"></div>
+        <p class="eyebrow">Welcome</p>
+        <h2 id="auth-title">Sign in to AlgoVerse Pro</h2>
+        <p class="subtext">Access a premium study environment with live visual walkthroughs and guided DSA learning.</p>
+        <form id="login-form" class="auth-form">
+          <input id="email" type="email" placeholder="Email" required />
+          <input id="password" type="password" placeholder="Password" required />
+          <button type="submit" id="auth-submit">Enter workspace</button>
+        </form>
+        <p class="auth-switch">
+          <span id="auth-switch-text">New here?</span>
+          <button id="toggle-auth" type="button" class="text-button">Create account</button>
+        </p>
+      </div>
+    </section>
+
+    <main class="app-shell" id="app-shell" hidden>
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">A</div>
+          <div>
+            <h2>AlgoVerse</h2>
+            <p>Professional DSA Studio</p>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <button class="nav-btn active" type="button" data-target="home-panel">Home</button>
+          <button class="nav-btn" type="button" data-target="theory-panel">Theory</button>
+          <button class="nav-btn" type="button" data-target="simulator-panel">Simulator</button>
+          <button class="nav-btn" type="button" data-target="settings-panel">Settings</button>
+        </nav>
+
+        <div class="sidebar-card">
+          <p class="eyebrow">Learning streak</p>
+          <h3 id="learning-streak-count">0 day streak</h3>
+          <p class="subtext">Keep the momentum with one polished idea each day.</p>
+        </div>
+      </aside>
+
+      <div class="main-content">
+        <header class="topbar">
+          <button class="search-pill" id="command-trigger" type="button">⌘K Search algorithms</button>
+          <div class="topbar-tools">
+            <button class="icon-btn" type="button" aria-label="Notifications">🔔</button>
+            <div class="profile-chip">
+              <div class="profile-avatar">AV</div>
+              <div>
+                <strong id="topbar-name">Student</strong>
+                <p>Premium learner</p>
+              </div>
+            </div>
+            <button id="theme-toggle" class="theme-toggle" type="button">🌙 Dark</button>
+            <button id="logout-btn" class="theme-toggle" type="button">Logout</button>
+          </div>
+        </header>
+
+        <section class="panel-section home-panel" id="home-panel">
+          <section class="dashboard-hero">
+            <div class="dashboard-hero-copy">
+              <p class="eyebrow">Dashboard</p>
+              <h1>Design your study flow around momentum.</h1>
+              <p class="subtext">A refined command center for tracking your progress, continuing lessons, and jumping straight into simulations.</p>
+              <div class="hero-actions-row">
+                <button class="primary-btn" id="open-simulator-btn" type="button">Open simulator</button>
+                <button class="secondary-btn" id="open-explorer-btn" type="button">Explore algorithms</button>
+              </div>
+            </div>
+            <div class="dashboard-highlight">
+              <!-- Live Algorithm Showcase: a focused card that keeps the dashboard intact while presenting one polished animation at a time. -->
+              <article class="highlight-card showcase-card" id="showcase-card" aria-label="Live Algorithm Showcase">
+                <div class="showcase-header">
+                  <div>
+                    <p class="metric-label">Live Algorithm Showcase</p>
+                    <h3 class="showcase-name" id="showcase-name">Bubble Sort</h3>
+                  </div>
+                  <div class="showcase-actions" aria-label="Showcase navigation controls">
+                    <button class="showcase-nav showcase-play" id="showcase-play" type="button" aria-label="Play showcase">▶ Play</button>
+                    <button class="showcase-nav" id="showcase-next" type="button" aria-label="Next algorithm">Next</button>
+                  </div>
+                </div>
+
+                <div class="showcase-progress-block">
+                  <div class="showcase-progress-track" aria-hidden="true">
+                    <span class="showcase-progress-fill" id="showcase-progress-fill"></span>
+                  </div>
+                  <span class="showcase-position" id="showcase-position">1 / 5</span>
+                </div>
+
+                <div class="showcase-body">
+                  <div class="showcase-visual" id="showcase-visual"></div>
+                  <div class="showcase-meta">
+                    <div class="showcase-meta-item">
+                      <span class="metric-label">Step</span>
+                      <strong id="showcase-step">Comparing adjacent bars</strong>
+                    </div>
+                    <div class="showcase-meta-item">
+                      <span class="metric-label">Action</span>
+                      <strong id="showcase-action">Swap 7 and 2</strong>
+                    </div>
+                    <div class="showcase-meta-item">
+                      <span class="metric-label">Time</span>
+                      <strong id="showcase-time">O(n²)</strong>
+                    </div>
+                    <div class="showcase-meta-item">
+                      <span class="metric-label">Space</span>
+                      <strong id="showcase-space">O(1)</strong>
+                    </div>
+                  </div>
+                  <div class="showcase-chip-row" aria-label="Showcase quick access chips">
+                    <button class="showcase-chip active" type="button" data-index="0">Bubble Sort</button>
+                    <button class="showcase-chip" type="button" data-index="1">Binary Search</button>
+                    <button class="showcase-chip" type="button" data-index="2">Stack</button>
+                    <button class="showcase-chip" type="button" data-index="3">Queue</button>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="dashboard-card">
+              <p class="metric-label">Current streak</p>
+              <strong id="current-streak-value">0 days</strong>
+              <p class="mini-note">You are on a steady learning streak.</p>
+            </article>
+            <article class="dashboard-card">
+              <p class="metric-label">Live simulations</p>
+              <strong id="live-simulations-value">0 runs</strong>
+              <p class="mini-note">Practice your favorite patterns anytime.</p>
+            </article>
+            <article class="dashboard-card">
+              <p class="metric-label">Weekly goal</p>
+              <strong id="weekly-goal-value">0%</strong>
+              <p class="mini-note">Keep the progress bar moving upward.</p>
+            </article>
+            <article class="dashboard-card">
+              <p class="metric-label">Avg. completion</p>
+              <strong id="avg-completion-value">0%</strong>
+              <p class="mini-note">High retention and strong consistency.</p>
+            </article>
+          </section>
+
+          <section class="dashboard-layout">
+            <div class="dashboard-stack">
+              <article class="panel-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Recent algorithms</p>
+                    <h3>Pick up where you left off</h3>
+                  </div>
+                </div>
+                <div class="list-rows">
+                  <div class="list-item">
+                    <div>
+                      <strong>Bubble Sort</strong>
+                      <p>Comparison-based pattern</p>
+                    </div>
+                    <span class="tag-pill">Review</span>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>Binary Search</strong>
+                      <p>Divide and conquer strategy</p>
+                    </div>
+                    <span class="tag-pill">Practice</span>
+                  </div>
+                  <div class="list-item">
+                    <div>
+                      <strong>DFS Traversal</strong>
+                      <p>Stack-based tree exploration</p>
+                    </div>
+                    <span class="tag-pill">New</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="panel-card continue-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Continue learning</p>
+                    <h3>Graph traversal in motion</h3>
+                  </div>
+                </div>
+                <p class="subtext">Deepen your understanding of BFS, DFS, and shortest path logic with visual step-by-step practice.</p>
+                <div class="hero-actions-row">
+                  <button class="primary-btn" id="continue-learning-btn" type="button">Resume lesson</button>
+                  <button class="secondary-btn" type="button" data-target="simulator-panel" class="quick-action">Open simulator</button>
+                </div>
+              </article>
+            </div>
+
+            <div class="dashboard-stack">
+              <article class="panel-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Statistics</p>
+                    <h3>Your weekly momentum</h3>
+                  </div>
+                </div>
+                <div class="progress-block">
+                  <div class="progress-row">
+                    <span>Concepts</span>
+                    <strong id="concepts-progress-count">0/24</strong>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill" id="concepts-progress-bar" style="width: 0%"></div></div>
+                </div>
+                <div class="progress-block">
+                  <div class="progress-row">
+                    <span>Simulations</span>
+                    <strong id="simulations-progress-count">0/15</strong>
+                  </div>
+                  <div class="progress-track"><div class="progress-fill" id="simulations-progress-bar" style="width: 0%"></div></div>
+                </div>
+              </article>
+
+              <article class="panel-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Recent simulations</p>
+                    <h3>Latest activity</h3>
+                  </div>
+                </div>
+                <div class="list-rows compact" id="recent-activity-list">
+                  <div class="list-item">
+                    <div>
+                      <strong>No activity yet</strong>
+                      <p>Run a simulation to populate this feed.</p>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="panel-card">
+                <div class="card-header">
+                  <div>
+                    <p class="eyebrow">Quick actions</p>
+                    <h3>Jump to your next move</h3>
+                  </div>
+                </div>
+                <div class="quick-actions-grid">
+                  <button class="quick-action" type="button" data-target="theory-panel">Theory</button>
+                  <button class="quick-action" type="button" data-target="simulator-panel">Simulator</button>
+                  <button class="quick-action" type="button" data-target="settings-panel">Settings</button>
+                  <button class="quick-action" type="button" id="open-simulator-cta">Launch</button>
+                </div>
+              </article>
+            </div>
+          </section>
+        </section>
+
+        <section class="panel-section" id="theory-panel" hidden>
+          <section class="panel learning-panel">
+            <div class="learning-header">
+              <div>
+                <p class="eyebrow">Theory &amp; examples</p>
+                <h3>Study the idea, then jump into practice</h3>
+                <p class="subtext">Each algorithm card now gives you a short theory summary, a worked example, and practical learning cues.</p>
+              </div>
+            </div>
+
+            <div class="learning-grid">
+              <article class="theory-card">
+                <p class="eyebrow">Theory</p>
+                <h4 id="theory-title">Bubble Sort</h4>
+                <p id="theory-description" class="subtext">Bubble Sort compares adjacent elements and swaps them until the array is sorted.</p>
+                <div class="example-box">
+                  <h5>Worked example</h5>
+                  <p id="theory-example">Example: 5, 3, 4 → 3, 4, 5 after repeated passes.</p>
+                </div>
+              </article>
+
+              <article class="theory-card">
+                <p class="eyebrow">Core facts</p>
+                <div class="theory-detail-grid">
+                  <div class="detail-row"><span>Definition</span><p id="theory-definition">Bubble Sort compares adjacent values and swaps them until the sequence is ordered.</p></div>
+                  <div class="detail-row"><span>Visualization</span><p id="theory-visualization">Repeated pass-by-pass comparison of neighboring bars with swaps highlights.</p></div>
+                  <div class="detail-row"><span>Complexity</span><p id="theory-complexity">O(n²) time, O(1) auxiliary space.</p></div>
+                  <div class="detail-row"><span>Related Algorithms</span><p id="theory-related-algorithms">Insertion Sort, Selection Sort, Merge Sort, Quick Sort.</p></div>
+                </div>
+              </article>
+
+              <article class="theory-card">
+                <p class="eyebrow">Key idea</p>
+                <ul class="theory-list" id="theory-list">
+                  <li>Compare neighboring values.</li>
+                  <li>Swap when the left value is larger.</li>
+                  <li>Repeat until no swaps are needed.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel explorer-panel">
+            <div class="explorer-header">
+              <div>
+                <p class="eyebrow">Algorithm explorer</p>
+                <h3>Explore by technique and family</h3>
+                <p class="subtext">Move between arrays, two pointers, greedy choices, dynamic programming, graphs, trees, and recursion with a more structured learning path.</p>
+              </div>
+              <div class="explorer-info" id="explorer-info">
+                Select a card to focus the simulator on a new approach.
+              </div>
+            </div>
+
+            <div class="explorer-group">
+              <h4>Sorting &amp; Searching</h4>
+              <div class="explorer-grid">
+                <button class="algorithm-card active" type="button" data-title="Bubble Sort" data-algorithm="bubble" data-operation="none" data-values="8,3,5,1,9" data-target="" data-summary="Bubble Sort repeatedly compares adjacent elements and swaps them until the list is ordered." data-supported="true" data-theory="Bubble Sort compares neighboring values and swaps them until the array is fully ordered." data-example="For 8, 3, 5, 1, 9, the smaller values move left step by step until the list becomes 1, 3, 5, 8, 9." data-points="Compare neighboring values; swap if out of order; repeat until no swaps remain." data-definition="Bubble Sort repeatedly scans adjacent values and swaps any out-of-order pair until the sequence is sorted." data-visualization="A bar-by-bar pass animation where the largest unsorted value moves toward the end." data-complexity="Time: O(n²), Space: O(1)" data-related-algorithms="Insertion Sort, Selection Sort, Merge Sort, Quick Sort">
+                  <span class="card-title">Bubble Sort</span>
+                  <span class="card-tag">Comparison sort</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Merge Sort" data-algorithm="merge-sort" data-operation="none" data-values="8,3,5,1,9" data-target="" data-summary="Merge Sort divides the array into halves, sorts each half, then merges them back together." data-supported="true" data-theory="Merge Sort splits the array recursively, sorts each segment, and merges them into a fully ordered result." data-example="Divide 8, 3, 5, 1, 9 into halves, sort each side, then merge to get 1, 3, 5, 8, 9." data-points="Split the array; sort each half; merge sorted halves." data-definition="Merge Sort divides the array into halves, recursively sorts them, and merges sorted subarrays into a final sorted array." data-visualization="A divide-and-conquer animation showing active merge ranges and the merged result." data-complexity="Time: O(n log n), Space: O(n)" data-related-algorithms="Quick Sort, Heap Sort, Bubble Sort, Insertion Sort">
+                  <span class="card-title">Merge Sort</span>
+                  <span class="card-tag">Divide &amp; conquer</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Selection Sort" data-algorithm="selection-sort" data-operation="none" data-values="7,4,2,9,1" data-target="" data-summary="Selection Sort picks the smallest remaining element and places it at the front." data-supported="true" data-theory="Selection Sort scans the unsorted section, selects the minimum, and swaps it into position." data-example="From 7, 4, 2, 9, 1, the smallest value 1 moves to the beginning, then the next smallest value is selected." data-points="Scan for the smallest value; swap it into the sorted portion; repeat." data-definition="Selection Sort repeatedly selects the smallest remaining element and swaps it with the next position in the sorted subarray." data-visualization="A selection cursor highlights the minimum value and then swaps it into place." data-complexity="Time: O(n²), Space: O(1)" data-related-algorithms="Bubble Sort, Insertion Sort, Heap Sort, Merge Sort">
+                  <span class="card-title">Selection Sort</span>
+                  <span class="card-tag">Comparison sort</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Insertion Sort" data-algorithm="insertion-sort" data-operation="none" data-values="6,2,5,3,8" data-target="" data-summary="Insertion Sort builds a sorted section one element at a time." data-supported="true" data-theory="Insertion Sort inserts each new item into its correct place inside the growing sorted prefix." data-example="Start with 6, 2, 5, 3, 8, and insert 2 before 6, then place 5 and 3 in sorted order." data-points="Take the next item; compare backward; insert it into sorted order." data-definition="Insertion Sort iterates through the array and inserts each element into the correct position within the sorted portion." data-visualization="A moving insertion point shifts values to make room for the current element." data-complexity="Time: O(n²), Space: O(1)" data-related-algorithms="Bubble Sort, Selection Sort, Merge Sort, Quick Sort">
+                  <span class="card-title">Insertion Sort</span>
+                  <span class="card-tag">Incremental sort</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Quick Sort" data-algorithm="quick-sort" data-operation="none" data-values="8,3,5,1,9" data-target="" data-summary="Quick Sort partitions the array and recursively sorts each side." data-supported="true" data-theory="Quick Sort chooses a pivot, partitions around it, then recursively sorts the left and right partitions." data-example="Choose pivot 5 from 8, 3, 5, 1, 9, partition around 5, then sort the left and right groups." data-points="Choose a pivot; partition smaller and larger values; recurse on each partition." data-definition="Quick Sort sorts by partitioning the array around a pivot and then recursively sorting each side." data-visualization="Active pivot and partition ranges are highlighted while values move around the pivot." data-complexity="Time: O(n log n), Space: O(log n)" data-related-algorithms="Merge Sort, Heap Sort, Selection Sort, Bubble Sort">
+                  <span class="card-title">Quick Sort</span>
+                  <span class="card-tag">Divide &amp; conquer</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Binary Search" data-algorithm="binary-search" data-operation="none" data-values="1,3,5,7,9,11" data-target="7" data-summary="Binary Search narrows the search range by checking the middle value repeatedly." data-supported="true" data-theory="Binary Search only works on sorted data. It removes half the remaining candidates at every step." data-example="With 1, 3, 5, 7, 9, 11 and target 7, the middle value 7 is found after one check." data-points="Work on sorted data; check the middle; move left or right depending on the target." data-definition="Binary Search repeatedly splits the search space in half by comparing the target to the middle element." data-visualization="A moving search window with low, mid, and high pointers shrinking around the target." data-complexity="Time: O(log n), Space: O(1)" data-related-algorithms="Interpolation Search, Jump Search, Ternary Search, Fibonacci Search">
+                  <span class="card-title">Binary Search</span>
+                  <span class="card-tag">Divide &amp; conquer</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="explorer-group">
+              <h4>Data Structures</h4>
+              <div class="explorer-grid">
+                <button class="algorithm-card" type="button" data-title="Stack" data-algorithm="stack" data-operation="none" data-values="" data-target="" data-summary="A stack is a last-in, first-out structure for managing temporary state." data-supported="true" data-theory="Stack stores items in LIFO order, with push and pop operations operating on the top." data-example="Push 2, 5, 8, then pop to remove 8, 5, 2 in reverse order." data-points="Push elements onto the top; pop them from the top; peek at the current top." data-definition="A stack is a linear data structure that adds and removes elements from one end only." data-visualization="A vertical stack of elements with the top item highlighted and operations acting at the top." data-complexity="Time: O(1) for push/pop, Space: O(n)" data-related-algorithms="Queue, Linked List, Recursion">
+                  <span class="card-title">Stack</span>
+                  <span class="card-tag">Linear structure</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Queue" data-algorithm="queue" data-operation="none" data-values="" data-target="" data-summary="A queue is a first-in, first-out structure for ordered processing." data-supported="true" data-theory="Queue stores items in FIFO order, with enqueue at the rear and dequeue at the front." data-example="Enqueue 1, 4, 7, then dequeue to process 1, 4, 7 in arrival order." data-points="Enqueue new items at the rear; dequeue items from the front; inspect the front item." data-definition="A queue is a linear data structure that processes elements in the order they arrive." data-visualization="A horizontal queue where elements enter at the rear and leave from the front." data-complexity="Time: O(1) for enqueue/dequeue, Space: O(n)" data-related-algorithms="Stack, Linked List, BFS">
+                  <span class="card-title">Queue</span>
+                  <span class="card-tag">Linear structure</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Linked List" data-algorithm="linked-list" data-operation="none" data-values="" data-target="" data-summary="A linked list chains nodes together with pointers to the next element." data-supported="true" data-theory="Linked List stores each item in a node that points to the next node, enabling flexible insertion and removal." data-example="3 → 7 → 2 is represented by nodes where 3 points to 7 and 7 points to 2." data-points="Allocate a new node; link it into the list; update pointers when inserting or deleting." data-definition="A linked list is a sequence of nodes where each node points to its successor." data-visualization="A chain of nodes connected by pointers, with head and tail positions shown." data-complexity="Time: O(n) for random access, O(1) for insert/delete at a known node, Space: O(n)" data-related-algorithms="Stack, Queue, Tree">
+                  <span class="card-title">Linked List</span>
+                  <span class="card-tag">Pointer-based</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="explorer-group">
+              <h4>Trees</h4>
+              <div class="explorer-grid">
+                <button class="algorithm-card" type="button" data-title="Binary Search Tree" data-algorithm="bst" data-operation="none" data-values="" data-target="" data-summary="A BST keeps left values smaller and right values larger in each subtree." data-supported="true" data-theory="Binary Search Tree stores nodes so left descendants are smaller and right descendants are larger than the parent." data-example="Insert 5, 2, 8, 1, 4 to form a tree where 2 is left of 5 and 8 is right of 5." data-points="Compare values; add smaller items to the left subtree; add larger items to the right subtree." data-definition="A BST is a tree data structure where each node’s left subtree has smaller values and right subtree has larger values." data-visualization="A node-based tree layout with left/right child links and search direction highlighted." data-complexity="Time: O(log n) average, O(n) worst-case, Space: O(n)" data-related-algorithms="AVL Tree, Red-Black Tree, Binary Search">
+                  <span class="card-title">Binary Search Tree</span>
+                  <span class="card-tag">Tree structure</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="AVL Tree" data-algorithm="avl" data-operation="none" data-values="" data-target="" data-summary="AVL trees self-balance after insertions and deletions using rotations." data-supported="true" data-theory="AVL trees maintain a height-balance property and perform rotations to keep operations O(log n)." data-example="Insert 30, 20, 40, 10 and rebalance using rotations to maintain height invariants." data-points="Track subtree heights; perform single/double rotations when imbalance occurs; keep tree balanced." data-definition="An AVL tree is a self-balancing BST that ensures the heights of two child subtrees of any node differ by no more than one." data-visualization="Rotations animate when balancing triggers after insert/delete." data-complexity="Time: O(log n), Space: O(n)" data-related-algorithms="BST, Red-Black Tree">
+                  <span class="card-title">AVL Tree</span>
+                  <span class="card-tag">Self-balancing</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Red-Black Tree" data-algorithm="red-black" data-operation="none" data-values="" data-target="" data-summary="Red-Black trees provide a balanced BST with relaxed constraints using node coloring." data-supported="true" data-theory="Red-Black trees use color and rotations to guarantee tree height is O(log n) while simplifying rebalancing rules." data-example="Insert values and observe color flips and rotations that maintain red-black properties." data-points="Enforce coloring and rotation rules; fix violations after insert/delete; keep balanced height." data-definition="A Red-Black Tree is a BST that uses node colors and rotations to maintain balance with bounded height." data-visualization="Color-coded nodes and rotation animations illustrate rebalancing." data-complexity="Time: O(log n), Space: O(n)" data-related-algorithms="AVL Tree, BST">
+                  <span class="card-title">Red-Black Tree</span>
+                  <span class="card-tag">Self-balancing</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Trie" data-algorithm="trie" data-operation="none" data-values="" data-target="" data-summary="Trie stores strings in a prefix tree to enable fast prefix queries." data-supported="true" data-theory="A trie (prefix tree) stores characters across paths from the root, enabling O(length) retrieval of strings and prefixes." data-example="Insert 'cat', 'cap', 'car' and query prefixes 'ca' to list matching entries." data-points="Insert characters along a path; mark word terminals; traverse prefixes to retrieve candidates." data-definition="A trie is a tree-like data structure optimized for retrieval of strings by prefixes." data-visualization="Characters expand along branches; terminal nodes highlight complete words." data-complexity="Time: O(k) for k-length key, Space: O(ALPHABET_SIZE * nodes)" data-related-algorithms="Hash Table, BST">
+                  <span class="card-title">Trie</span>
+                  <span class="card-tag">Prefix tree</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="explorer-group">
+              <h4>Graphs</h4>
+              <div class="explorer-grid">
+                <button class="algorithm-card" type="button" data-title="Depth First Search" data-algorithm="graph" data-operation="dfs" data-values="1,2,3" data-target="" data-summary="DFS explores a branch deeply before moving to the next branch." data-supported="true" data-theory="DFS uses a stack-like idea to keep exploring deeper nodes before backtracking." data-example="In a connected graph, DFS might visit 1 → 2 → 3 before returning and exploring other branches." data-points="Visit a node; explore a neighbor; backtrack when needed; continue until all nodes are visited." data-definition="Depth First Search explores a graph branch as deeply as possible before backtracking." data-visualization="A path grows downward while an active stack shows the current traversal route." data-complexity="Time: O(V + E), Space: O(V)" data-related-algorithms="BFS, Topological Sort, Backtracking">
+                  <span class="card-title">DFS</span>
+                  <span class="card-tag">Graph traversal</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Breadth First Search" data-algorithm="graph" data-operation="bfs" data-values="1,2,3" data-target="" data-summary="BFS visits nodes level by level using a queue-based approach." data-supported="true" data-theory="BFS uses a queue to visit nodes by distance level, which is ideal for shortest-path questions in unweighted graphs." data-example="Starting from node 1, BFS visits all neighbors first, then their neighbors, in layers." data-points="Enqueue current node; visit neighbors; process the next node in the queue; repeat until all nodes are visited." data-definition="Breadth First Search explores all nodes at the current depth before moving to the next depth level." data-visualization="A layered wavefront animation where the queue shows the frontier of nodes waiting to be processed." data-complexity="Time: O(V + E), Space: O(V)" data-related-algorithms="DFS, Dijkstra, Bidirectional BFS">
+                  <span class="card-title">BFS</span>
+                  <span class="card-tag">Queue-based traversal</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Dijkstra" data-algorithm="graph" data-operation="dijkstra" data-values="1,2,3" data-target="" data-summary="Dijkstra finds the shortest path by prioritizing the lowest known cost." data-supported="true" data-theory="Dijkstra selects the next closest node by repeatedly minimizing the distance to each frontier vertex." data-example="Starting at the source, Dijkstra expands the node with the smallest tentative distance until the destination is finalized." data-points="Select the nearest node; relax outgoing edges; update neighbors; repeat until all nodes are settled." data-definition="Dijkstra’s algorithm finds the shortest path from a source node to every other node in a graph with non-negative edge weights." data-visualization="A weighted graph showing the shortest-distance frontier and priority queue updates." data-complexity="Time: O((V + E) log V), Space: O(V)" data-related-algorithms="A*, Bellman-Ford, BFS">
+                  <span class="card-title">Dijkstra</span>
+                  <span class="card-tag">Shortest path</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Prim's MST" data-algorithm="prim" data-operation="none" data-values="" data-target="" data-summary="Prim's algorithm grows a minimum spanning tree by repeatedly adding the cheapest outgoing edge." data-supported="true" data-theory="Prim starts from a seed vertex and adds the minimum-weight edge connecting the growing tree to an outside vertex until all vertices are included." data-example="Starting from node A, pick the smallest neighbor edge and continue until all nodes belong to the MST." data-points="Maintain a priority queue of candidate edges; add smallest edge that connects a new vertex; repeat." data-definition="Prim’s algorithm finds a minimum spanning tree by greedily selecting the least-cost edge extending the partial tree." data-visualization="A growing tree highlights chosen edges and the candidate frontier." data-complexity="Time: O((V + E) log V), Space: O(V)" data-related-algorithms="Kruskal, Dijkstra">
+                  <span class="card-title">Prim's MST</span>
+                  <span class="card-tag">MST</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Kruskal's MST" data-algorithm="kruskal" data-operation="none" data-values="" data-target="" data-summary="Kruskal's algorithm builds an MST by selecting lowest-weight edges that don't create cycles." data-supported="true" data-theory="Kruskal sorts edges by weight and adds them if they connect different components, using union-find to detect cycles." data-example="Sort all edges, then pick smallest edges that join disjoint sets until all vertices are connected." data-points="Sort edges by weight; use union-find to detect cycles; add edge if it connects two components." data-definition="Kruskal’s algorithm constructs a minimum spanning tree by iteratively adding the next-lightest edge that doesn’t form a cycle." data-visualization="Edges flash as they are considered and accepted/rejected based on cycle checks." data-complexity="Time: O(E log E), Space: O(V)" data-related-algorithms="Prim, Union-Find">
+                  <span class="card-title">Kruskal's MST</span>
+                  <span class="card-tag">MST</span>
+                </button>
+                <button class="algorithm-card" type="button" data-title="Bellman-Ford" data-algorithm="graph" data-operation="bellman-ford" data-values="" data-target="" data-summary="Bellman-Ford computes shortest paths allowing negative weights and detects negative cycles." data-supported="true" data-theory="Bellman-Ford relaxes all edges repeatedly to find shortest paths even with negative weights, and flags negative cycles." data-example="Relax all edges V-1 times to find shortest distances; run one more pass to detect negative cycles." data-points="Initialize distances; relax edges repeatedly; check for negative cycles on an extra pass." data-definition="Bellman-Ford finds shortest paths in graphs with negative weights and can detect negative-weight cycles." data-visualization="Distance labels update across the graph as relaxations propagate." data-complexity="Time: O(V * E), Space: O(V)" data-related-algorithms="Dijkstra, Floyd-Warshall">
+                  <span class="card-title">Bellman-Ford</span>
+                  <span class="card-tag">Shortest path</span>
+                </button>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="panel-section" id="simulator-panel" hidden>
+          <section class="panel profile-panel">
+            <div class="profile-card">
+              <div>
+                <p class="eyebrow">Signed in as</p>
+                <h3 id="profile-name">Student</h3>
+                <p id="profile-email" class="subtext">student@example.com</p>
+              </div>
+              <div class="profile-badge">Advanced Study</div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <form id="simulator-form">
+              <label for="algorithm">Algorithm</label>
+              <select id="algorithm" name="algorithm">
+                <optgroup label="Sorting & Search">
+                  <option value="bubble">Bubble Sort</option>
+                  <option value="selection-sort">Selection Sort</option>
+                  <option value="insertion-sort">Insertion Sort</option>
+                  <option value="merge-sort">Merge Sort</option>
+                  <option value="quick-sort">Quick Sort</option>
+                  <option value="binary-search">Binary Search</option>
+                  <option value="linear-search">Linear Search</option>
+                  <option value="heap">Heap Sort</option>
+                </optgroup>
+                <optgroup label="Stacks, Queues & Lists">
+                  <option value="stack">Stack</option>
+                  <option value="queue">Queue</option>
+                  <option value="linked-list">Linked List</option>
+                </optgroup>
+                <optgroup label="Graphs">
+                  <option value="graph">Graph (Interactive)</option>
+                  <option value="bfs">Graph BFS</option>
+                  <option value="dfs">Graph DFS</option>
+                  <option value="dijkstra">Dijkstra Shortest Path</option>
+                  <option value="prim">Prim's MST</option>
+                  <option value="kruskal">Kruskal's MST</option>
+                  <option value="bellman-ford">Bellman-Ford Shortest Path</option>
+                </optgroup>
+                <optgroup label="Trees & Heaps">
+                  <option value="bst">BST (Binary Search Tree)</option>
+                  <option value="avl">AVL Tree</option>
+                  <option value="trie">Trie</option>
+                  <option value="heap-tree">Heap (Tree View)</option>
+                  <option value="red-black">Red-Black Tree</option>
+                </optgroup>
+              </select>
+
+              <p id="form-hint" class="subtext">Choose an algorithm to reveal the right inputs.</p>
+
+              <div id="values-group">
+                <label for="values" id="values-label">Values (comma-separated)</label>
+                <input id="values" name="values" placeholder="8,3,6,1,9,2" />
+                <p id="values-hint" class="subtext">Example: 8,3,6,1,9,2</p>
+              </div>
+
+              <div id="target-group" hidden>
+                <label for="target" id="target-label">Target value</label>
+                <input id="target" name="target" placeholder="6" />
+                <p id="target-hint" class="subtext">Example: 6</p>
+              </div>
+
+              <div id="position-group" hidden>
+                <label for="position" id="position-label">Position</label>
+                <input id="position" name="position" placeholder="2" />
+                <p id="position-hint" class="subtext">Example: 2</p>
+              </div>
+
+              <div id="key-group" hidden>
+                <label for="key" id="key-label">Key</label>
+                <input id="key" name="key" placeholder="username" />
+              </div>
+
+              <div id="value-group" hidden>
+                <label for="value" id="value-label">Value</label>
+                <input id="value" name="value" placeholder="42" />
+              </div>
+
+              <div id="word-group" hidden>
+                <label for="word" id="word-label">Word</label>
+                <input id="word" name="word" placeholder="hello" />
+              </div>
+
+              <div id="operation-group" hidden>
+                <label for="operation">Operation</label>
+                <select id="operation" name="operation"></select>
+              </div>
+
+              <div id="edges-group" hidden>
+                <label for="edges">Graph Edges</label>
+                <input id="edges" name="edges" placeholder="0-1:4, 1-2:6, 2-3:3" />
+                <p class="subtext">One edge per entry. Weighted example: 0-1:4.</p>
+              </div>
+
+              <button type="submit" id="run-simulation-btn">Run simulation</button>
+              <p id="validation-message" class="subtext" aria-live="polite"></p>
+            </form>
+          </section>
+
+          <section class="panel results" id="results" aria-live="polite" aria-busy="false">
+            <p class="empty">Select an algorithm and run a simulation to view the visualization.</p>
+          </section>
+
+          <section class="panel graph-panel" id="graph-panel" hidden>
+            <div class="graph-layout">
+              <div>
+                <h3>Graph view</h3>
+                <div id="graph-results-target" class="graph-results-target"></div>
+              </div>
+              <aside class="info-sidebar" id="info-sidebar">
+                <h4>Algorithm notes</h4>
+                <p>Select a graph traversal mode to see the explanation panel update live.</p>
+              </aside>
+            </div>
+          </section>
+        </section>
+
+        <section class="panel-section" id="settings-panel" hidden>
+          <section class="panel">
+            <h3>Preferences</h3>
+            <div class="settings-grid">
+              <div class="setting-card">
+                <h4>Theme</h4>
+                <p>Switch between dark and light modes instantly.</p>
+              </div>
+              <div class="setting-card">
+                <h4>Animation speed</h4>
+                <p>Adjust how quickly walkthroughs progress.</p>
+              </div>
+              <div class="setting-card">
+                <h4>Accessibility</h4>
+                <p>High contrast and readable layouts are built in.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+
+    <div class="command-palette" id="command-palette" hidden>
+      <div class="command-card">
+        <div class="command-header">
+          <h3>Command palette</h3>
+          <span>Press Esc to close</span>
+        </div>
+        <input id="command-input" type="text" placeholder="Search algorithms, theory, simulator" />
+        <div class="command-list">
+          <button class="command-item" type="button" data-target="theory-panel">Theory explorer</button>
+          <button class="command-item" type="button" data-target="simulator-panel">Open simulator</button>
+          <button class="command-item" data-target="settings-panel" type="button">Open settings</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/graph-visualizer.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
