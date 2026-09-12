@@ -4,7 +4,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 const { buildTreeAnimationSteps } = require('./tree-visualizer');
 
-const host = '127.0.0.1';
+const host = '0.0.0.0';
 const port = process.env.PORT || 3000;
 const root = __dirname;
 
@@ -96,8 +96,8 @@ function spawnChild(command, args, options = {}, maxAttempts = 3, delayMs = 150)
 }
 
 function runCppEngine(algorithm, values, target, operation) {
-  const binaryPath = path.join(root, 'cpp', 'algorithm_engine.exe');
-  const sourcePath = path.join(root, 'cpp', 'algorithm_engine.cpp');
+  const binaryPath = path.join(root, 'algorithm_engine');
+  const sourcePath = path.join(root, 'algorithm_engine.cpp');
   const compilers = [
     { command: 'g++', args: ['-std=c++11', sourcePath, '-O2', '-o', binaryPath] },
     { command: 'clang++', args: ['-std=c++11', sourcePath, '-O2', '-o', binaryPath] },
